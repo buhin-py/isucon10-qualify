@@ -318,6 +318,7 @@ def post_estate_nazotte():
             (
                 "SELECT * FROM estate"
                 " WHERE latitude <= %s AND latitude >= %s AND longitude <= %s AND longitude >= %s"
+                # " AND ST_Contains(ST_PolygonFromText(%s), point)"
                 " AND ST_Contains(ST_PolygonFromText(%s), POINT(latitude, longitude))"
                 " ORDER BY popularity DESC, id ASC"
             ),
