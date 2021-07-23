@@ -36,3 +36,24 @@ CREATE TABLE isuumo.chair
     popularity  INTEGER         NOT NULL,
     stock       INTEGER         NOT NULL
 );
+
+CREATE INDEX idx_price_id ON isuumo.chair(price,id)
+;
+
+CREATE INDEX idx_rent ON isuumo.estate(rent)
+;
+CREATE INDEX idx_popularity
+ON isuumo.estate(popularity DESC, id)
+;
+
+--ALTER TABLE isuumo.estate ADD point POINT AS (POINT(latitude, longitude))
+--STORED NOT NULL
+--;
+--ALTER TABLE isuumo.estate ADD SPATIAL INDEX estate_point_idx(point)
+--;
+ALTER TABLE isuumo.estate ADD COLUMN point POINT;
+-- データ登録
+UPDATE isuumo.estate SET point=POINT(latitude, longitude);
+ALTER TABLE issumo.estate MODIFY COLUMN point POINT SRID 2 NOT NULL;
+ALTER TABLE issumo.estate ADD SPATIAL INDEX estate_point_idx(point);
+
