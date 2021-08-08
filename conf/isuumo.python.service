@@ -1,0 +1,22 @@
+[Unit]
+Description=isuumo.python
+After=syslog.target
+
+[Service]
+WorkingDirectory=/home/isucon/isuumo/webapp/python
+EnvironmentFile=/home/isucon/env.sh
+PIDFile=/home/isucon/isuumo/webapp/python/server.pid
+
+User=isucon
+Group=isucon
+ExecStart=/home/isucon/local/python/bin/python app.py
+#ExecStart=/home/isucon/local/python/bin/uwsgi --http 0.0.0.0:1323  myapp.ini
+#ExecStart=/home/isucon/local/python/bin/uwsgi --ini  myapp.ini
+
+Restart   = always
+KillSignal=SIGQUIT
+#Type      = simple
+Type      = notify
+NotifyAccess=all
+[Install]
+WantedBy=multi-user.target
