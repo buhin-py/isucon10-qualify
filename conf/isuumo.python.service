@@ -9,9 +9,9 @@ PIDFile=/home/isucon/isuumo/webapp/python/server.pid
 
 User=isucon
 Group=isucon
-ExecStart=/home/isucon/local/python/bin/python app.py
+#ExecStart=/home/isucon/local/python/bin/python app.py
 #ExecStart=/home/isucon/local/python/bin/uwsgi --http 0.0.0.0:1323  myapp.ini
-#ExecStart=/home/isucon/local/python/bin/uwsgi --ini  myapp.ini
+ExecStart=/home/isucon/local/python/bin/uwsgi --ini  myapp.ini
 
 Restart   = always
 KillSignal=SIGQUIT
